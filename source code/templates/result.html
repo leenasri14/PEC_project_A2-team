@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection Result</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        /* Result List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.2em;
+        }
+
+        li:last-child {
+            border-bottom: none; /* Remove bottom border for last item */
+        }
+
+        /* Link Styling */
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 1.2em;
+            margin-top: 20px;
+            border: 1px solid #2980b9;
+            border-radius: 5px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            li {
+                font-size: 1.1em;
+            }
+
+            a {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            li {
+                font-size: 1em;
+            }
+
+            a {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Deepfake Detection Results</h1>
+    <ul>
+      {% for result in results %}
+        <li>Video: {{ result.filename }} - Predicted: {{ result.predicted }}</li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Upload another video</a>
+</body>
+</html>

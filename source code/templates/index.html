@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #acb6e5); /* Updated gradient background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Box Styles */
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
+            color: #2980b9;
+        }
+
+        /* Navigation Styles */
+        nav {
+            margin: 20px 0; /* Add margin to separate from container */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack links vertically */
+            align-items: center; /* Center links */
+            gap: 10px; /* Space between links */
+            margin: 0;
+        }
+
+        nav ul li {
+            width: 100%; /* Make links full width */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 1.3em;
+            color: #ffffff;
+            padding: 15px 0; /* Uniform top and bottom padding */
+            background-color: #3498db;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: block; /* Ensure the entire area is clickable */
+            width: 100%; /* Make links full width within the container */
+            text-align: center; /* Center text within the link */
+        }
+
+        nav ul li a:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flash Messages Styles */
+        .flash-messages {
+            max-width: 400px;
+            margin: 20px 0;
+            padding: 0;
+            text-align: center; /* Center flash messages */
+        }
+
+        .flash-messages li {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: slideIn 0.5s ease forwards;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                gap: 10px; /* Adjust space for smaller screens */
+            }
+
+            nav ul li a {
+                font-size: 1.1em;
+                padding: 12px 0; /* Uniform top and bottom padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+                padding: 10px 0; /* Uniform top and bottom padding */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deepfake Detection</h1>
+        
+        <!-- Navigation Links -->
+        <nav>
+            <ul>
+                <li><a href="/testing">Testing</a></li> <!-- Link to Testing page -->
+                <li><a href="/random_testing">Random Testing</a></li> <!-- Link to Random Testing page -->
+            </ul>
+        </nav>
+
+        <!-- Flash Messages -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

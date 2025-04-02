@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection - Testing</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Upload Form Styling */
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            border: 2px solid #3498db;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+            color: #333;
+            font-size: 1em;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="file"]:hover {
+            border-color: #2980b9;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Prediction Results Styling */
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 10px 0; /* Added padding to ul */
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        li {
+            font-size: 1.2em;
+            color: #34495e;
+            padding: 10px 20px; /* Added horizontal padding to li */
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            text-align: left; /* Align text to the left */
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            input[type="submit"] {
+                font-size: 1.1em;
+                padding: 10px 15px;
+            }
+
+            ul {
+                padding: 15px;
+            }
+
+            li {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            input[type="submit"] {
+                font-size: 1em;
+                padding: 8px 12px;
+            }
+
+            li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Videos for Testing</h1>
+
+        <!-- Upload Form -->
+        <form action="{{ url_for('testing') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="files[]" accept="video/*" multiple required>
+            <input type="submit" value="Upload and Get Prediction">
+        </form>
+
+        <!-- Display Predictions -->
+        {% if predictions %}
+            <h2>Predictions</h2>
+            <ul>
+                {% for file, prediction in predictions.items() %}
+                    <li>{{ file }}: {{ prediction }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
